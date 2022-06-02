@@ -2,8 +2,8 @@ package com.example.application.views;
 
 import com.example.application.data.entity.User;
 import com.example.application.security.AuthenticatedUser;
-import com.example.application.views.about.AboutView;
-import com.example.application.views.hello.HelloView;
+import com.example.application.views.staticroute.StaticView;
+import com.example.application.views.typedurl.TypedUrlParameters;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -20,8 +20,7 @@ import com.vaadin.flow.component.html.ListItem;
 import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.UnorderedList;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.router.*;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
 import java.util.Optional;
 
@@ -42,6 +41,20 @@ public class MainLayout extends AppLayout {
             RouterLink link = new RouterLink();
             link.addClassNames("menu-item-link");
             link.setRoute(view);
+
+            Span text = new Span(menuTitle);
+            text.addClassNames("menu-item-text");
+
+            link.add(new LineAwesomeIcon(iconClass), text);
+            add(link);
+        }
+
+        public MenuItemInfo(String menuTitle, String iconClass, Class<? extends Component> view, String parameter) {
+            this.view = TypedUrlParameters.class;
+            RouterLink link = new RouterLink("", TypedUrlParameters.class, parameter);
+            link.addClassNames("menu-item-link");
+
+            //link.setRoute(view,);
 
             Span text = new Span(menuTitle);
             text.addClassNames("menu-item-text");
@@ -129,8 +142,8 @@ public class MainLayout extends AppLayout {
 
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
-            new MenuItemInfo("Static", "la la-globe", HelloView.class), //
-            new MenuItemInfo("About", "la la-file", AboutView.class), //
+            new MenuItemInfo("Static", "la la-globe", StaticView.class), //
+            new MenuItemInfo("Typed Url Parameters", "la la-globe", TypedUrlParameters.class, "testParam") //
         };
     }
 
