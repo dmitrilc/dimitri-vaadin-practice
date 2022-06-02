@@ -10,8 +10,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import javax.annotation.security.PermitAll;
 
-@PageTitle("Hello")
-@Route(value = "hello", layout = MainLayout.class)
+@PageTitle("Static")
+@Route(value = "static", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 @PermitAll
 public class HelloView extends HorizontalLayout {
