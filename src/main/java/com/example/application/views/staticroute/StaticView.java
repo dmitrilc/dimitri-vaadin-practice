@@ -1,4 +1,4 @@
-package com.example.application.views.hello;
+package com.example.application.views.staticroute;
 
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
@@ -14,12 +14,12 @@ import javax.annotation.security.PermitAll;
 @Route(value = "static", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 @PermitAll
-public class HelloView extends HorizontalLayout {
+public class StaticView extends HorizontalLayout {
 
     private TextField name;
     private Button sayHello;
 
-    public HelloView() {
+    public StaticView() {
         name = new TextField("Your name");
         sayHello = new Button("Say hello");
         sayHello.addClickListener(e -> {
