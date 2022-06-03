@@ -2,6 +2,7 @@ package com.example.application.views;
 
 import com.example.application.data.entity.User;
 import com.example.application.security.AuthenticatedUser;
+import com.example.application.views.routetemplates.RouteTemplateOne;
 import com.example.application.views.staticroute.StaticView;
 import com.example.application.views.typedurl.TypedUrlParameters;
 import com.example.application.views.typedurl.optional.OptionalTypedUrlParameters;
@@ -151,7 +152,8 @@ public class MainLayout extends AppLayout {
             new MenuItemInfo("Static", "la la-globe", StaticView.class), //
             new MenuItemInfo("Typed Url Parameters", "la la-globe", TypedUrlParameters.class, "testParam"), //
             new MenuItemInfo("Optional Typed Url Parameters", "la la-globe", OptionalTypedUrlParameters.class, "optionalParam"),
-            new MenuItemInfo("WildCard Typed Url Parameters", "la la-globe", OptionalTypedUrlParameters.class, "wildCardParam")
+            new MenuItemInfo("WildCard Typed Url Parameters", "la la-globe", OptionalTypedUrlParameters.class, "wildCardParam"),
+            new MenuItemInfo("Route Template One", "la la-globe", RouteTemplateOne.class, "defaultParam")
         };
     }
 

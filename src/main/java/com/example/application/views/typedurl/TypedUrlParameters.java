@@ -39,18 +39,20 @@ public class TypedUrlParameters
         Map<String, List<String>> parametersMap = queryParameters
                 .getParameters();
 
-        Grid<Person> grid = new Grid<>();
+        if (parametersMap.size() > 0){
+            Grid<Person> grid = new Grid<>();
 
-        var list = List.of(new Person(
-                parametersMap.get("firstName").get(0),
-                parametersMap.get("lastName").get(0))
-        );
+            var list = List.of(new Person(
+                    parametersMap.get("firstName").get(0),
+                    parametersMap.get("lastName").get(0))
+            );
 
-        grid.setItems(list);
-        grid.addColumn(Person::firstName).setHeader("First Name");
-        grid.addColumn(Person::lastName).setHeader("Last Name");
+            grid.setItems(list);
+            grid.addColumn(Person::firstName).setHeader("First Name");
+            grid.addColumn(Person::lastName).setHeader("Last Name");
 
-        add(grid);
+            add(grid);
+        }
     }
 }
 
