@@ -4,6 +4,8 @@ import com.example.application.data.entity.User;
 import com.example.application.security.AuthenticatedUser;
 import com.example.application.views.staticroute.StaticView;
 import com.example.application.views.typedurl.TypedUrlParameters;
+import com.example.application.views.typedurl.optional.OptionalTypedUrlParameters;
+import com.example.application.views.typedurl.wildcard.WildCardTypedUrlParameters;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -50,11 +52,15 @@ public class MainLayout extends AppLayout {
         }
 
         public MenuItemInfo(String menuTitle, String iconClass, Class<? extends Component> view, String parameter) {
-            this.view = TypedUrlParameters.class;
-            RouterLink link = new RouterLink("", TypedUrlParameters.class, parameter);
-            link.addClassNames("menu-item-link");
+            this.view = view;
 
-            //link.setRoute(view,);
+            RouterLink link = switch (menuTitle){
+                case "Optional Typed Url Parameters" -> new RouterLink("", OptionalTypedUrlParameters.class, parameter);
+                case "WildCard Typed Url Parameters" -> new RouterLink("", WildCardTypedUrlParameters.class, parameter);
+                default -> new RouterLink("", TypedUrlParameters.class, parameter);
+            };
+
+            link.addClassNames("menu-item-link");
 
             Span text = new Span(menuTitle);
             text.addClassNames("menu-item-text");
@@ -143,7 +149,9 @@ public class MainLayout extends AppLayout {
     private MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{ //
             new MenuItemInfo("Static", "la la-globe", StaticView.class), //
-            new MenuItemInfo("Typed Url Parameters", "la la-globe", TypedUrlParameters.class, "testParam") //
+            new MenuItemInfo("Typed Url Parameters", "la la-globe", TypedUrlParameters.class, "testParam"), //
+            new MenuItemInfo("Optional Typed Url Parameters", "la la-globe", OptionalTypedUrlParameters.class, "optionalParam"),
+            new MenuItemInfo("WildCard Typed Url Parameters", "la la-globe", OptionalTypedUrlParameters.class, "wildCardParam")
         };
     }
 
