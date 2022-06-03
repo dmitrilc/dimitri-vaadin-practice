@@ -3,6 +3,7 @@ package com.example.application.views.typedurl;
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
@@ -19,15 +20,15 @@ public class TypedUrlParameters
         extends HorizontalLayout
         implements HasUrlParameter<String>
 {
-    private final TextField textField = new TextField();
+    private final TextArea textArea = new TextArea();
 
     public TypedUrlParameters() {
-        textField.setValue("Typed URL Parameters");
-        add(textField);
+        textArea.setValue("Typed URL Parameters");
+        add(textArea);
     }
 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
-        textField.setValue(String.format("Hello, %s!", parameter));
+        textArea.setValue(String.format("Typed URL Parameter: %s!", parameter));
     }
 }
