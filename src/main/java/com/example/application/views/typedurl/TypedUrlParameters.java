@@ -56,4 +56,3 @@ public class TypedUrlParameters
     }
 }
 
-record Person(String firstName, String lastName) {}

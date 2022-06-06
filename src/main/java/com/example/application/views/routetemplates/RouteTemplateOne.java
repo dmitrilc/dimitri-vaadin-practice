@@ -13,9 +13,9 @@ import javax.annotation.security.PermitAll;
 //Or using alias
 // http://localhost:8080/prefix_to_add/userAlias/11/edit
 
-@Route(value = "user/:userID/edit", layout = MainLayout.class)
+@Route(value = "user/:userID?/edit", layout = MainLayout.class)
 @RoutePrefix("prefix_to_add")
-@RouteAlias("userAlias/:userID/edit")
+@RouteAlias("userAlias/:userID?/edit")
 @PermitAll
 public class RouteTemplateOne extends HorizontalLayout implements BeforeEnterObserver {
 
@@ -28,6 +28,7 @@ public class RouteTemplateOne extends HorizontalLayout implements BeforeEnterObs
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        textArea.setValue(String.format("User ID: %s!", event.getRouteParameters().get("userID").get()));
+        var arg = event.getRouteParameters().get("userId");
+        arg.ifPresent(s -> textArea.setValue(String.format("User ID: %s!", s)));
     }
 }
